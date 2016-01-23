@@ -20,7 +20,7 @@ Algorithm::AhoCorasick is a implmentation of the Aho-Corasick algorithm (1975). 
 CONSTRUCTOR
 -----------
 
-  * Algorithm::AchoCorasick.new(keywords => item(@keyword-list))
+  * Algorithm::AhoCorasick.new(keywords => item(@keyword-list))
 
 Constructs a new finite state machine from a list of keywords.
 
