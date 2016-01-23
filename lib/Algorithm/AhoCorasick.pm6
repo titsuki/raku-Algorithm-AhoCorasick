@@ -90,7 +90,7 @@ After the above preparation, it locate elements of a finite set of strings withi
 
 =head2 CONSTRUCTOR
 
-=item Algorithm::AchoCorasick.new(keywords => item(@keyword-list))
+=item Algorithm::AhoCorasick.new(keywords => item(@keyword-list))
 
 Constructs a new finite state machine from a list of keywords.
 
