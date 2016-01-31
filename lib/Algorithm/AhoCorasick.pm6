@@ -102,7 +102,7 @@ Returns elements of a finite set of strings within an input text.
 
 =head1 AUTHOR
 
-okaoka <mnfrf593@yahoo.co.jp>
+okaoka <cookbook_000@yahoo.co.jp>
 
 =head1 COPYRIGHT AND LICENSE
 

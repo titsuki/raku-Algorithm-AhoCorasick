@@ -34,7 +34,7 @@ Returns elements of a finite set of strings within an input text.
 AUTHOR
 ======
 
-okaoka <mnfrf593@yahoo.co.jp>
+okaoka <cookbook_000@yahoo.co.jp>
 
 COPYRIGHT AND LICENSE
 =====================
