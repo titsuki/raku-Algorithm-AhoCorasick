@@ -44,7 +44,16 @@ method !build-automata() {
 }
 
 method match($text) {
+    my $all = self.locate($text);
     my Set $matched;
+    for $all.keys -> $keyword {
+	$matched = $matched (|) $keyword;
+    }
+    return $matched;
+}
+
+method locate($text) {
+    my $matched;
     my $state = $!root;
     loop (my $i = 0; $i < $text.chars; $i++) {
 	my $trans = Mu;
@@ -60,7 +69,9 @@ method match($text) {
 	if (defined($trans)) {
 	    $state = $trans;
 	}
-	$matched = $matched (|) $state.matched-string;
+	for $state.matched-string.keys -> $string {
+	    $matched{$string}.push($i - $string.chars + 1);
+	}
     }
     return $matched;
 }
@@ -81,6 +92,7 @@ Algorithm::AhoCorasick - efficient search for multiple strings
        use Algorithm::AhoCorasick;
        my $aho-corasick = Algorithm::AhoCorasick.new(keywords => ['corasick','sick','algorithm','happy']);
        my $matched = $aho-corasick.match('aho-corasick was invented in 1975'); # set("corasick","sick")
+       my $located = $aho-corasick.locate('aho-corasick was invented in 1975'); # {"corasick" => [4], "sick" => [8]}
 
 =head1 DESCRIPTION
 
@@ -90,15 +102,19 @@ After the above preparation, it locate elements of a finite set of strings withi
 
 =head2 CONSTRUCTOR
 
-=item Algorithm::AhoCorasick.new(keywords => item(@keyword-list))
+=item C<Algorithm::AhoCorasick.new(keywords => item(@keyword-list))>
 
 Constructs a new finite state machine from a list of keywords.
 
 =head2 METHODS
 
-=item my $matched = $aho-corasick.match($text)
+=item C<my $matched = $aho-corasick.match($text)>
 
 Returns elements of a finite set of strings within an input text.
+
+=item C<my $located = $aho-corasick.locate($text)>
+
+Returns elements of a finite set of strings with location within an input text.
 
 =head1 AUTHOR
 
