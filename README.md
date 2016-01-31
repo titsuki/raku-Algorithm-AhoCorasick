@@ -11,6 +11,7 @@ SYNOPSIS
     use Algorithm::AhoCorasick;
     my $aho-corasick = Algorithm::AhoCorasick.new(keywords => ['corasick','sick','algorithm','happy']);
     my $matched = $aho-corasick.match('aho-corasick was invented in 1975'); # set("corasick","sick")
+    my $located = $aho-corasick.locate('aho-corasick was invented in 1975'); # {"corasick" => [4], "sick" => [8]}
 
 DESCRIPTION
 ===========
@@ -20,16 +21,20 @@ Algorithm::AhoCorasick is a implmentation of the Aho-Corasick algorithm (1975). 
 CONSTRUCTOR
 -----------
 
-  * Algorithm::AhoCorasick.new(keywords => item(@keyword-list))
+  * `Algorithm::AhoCorasick.new(keywords => item(@keyword-list))`
 
 Constructs a new finite state machine from a list of keywords.
 
 METHODS
 -------
 
-  * my $matched = $aho-corasick.match($text)
+  * `my $matched = $aho-corasick.match($text)`
 
 Returns elements of a finite set of strings within an input text.
+
+  * `my $located = $aho-corasick.locate($text)`
+
+Returns elements of a finite set of strings with location within an input text.
 
 AUTHOR
 ======
