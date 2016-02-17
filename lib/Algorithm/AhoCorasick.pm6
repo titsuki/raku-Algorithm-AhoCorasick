@@ -102,19 +102,21 @@ After the above preparation, it locate elements of a finite set of strings withi
 
 =head2 CONSTRUCTOR
 
+=head3 new
+
       my $aho-corasick = Algorithm::AhoCorasick.new(keywords => @keyword-list);
 
 Constructs a new finite state machine from a list of keywords.
 
 =head2 METHODS
 
-=item match
+=head3 match
 
       my $matched = $aho-corasick.match($text);
 
 Returns elements of a finite set of strings within an input text.
 
-=item locate
+=head3 locate
 
       my $located = $aho-corasick.locate($text);
 
