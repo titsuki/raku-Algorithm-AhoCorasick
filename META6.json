@@ -1,6 +1,6 @@
 {
   "name" : "Algorithm::AhoCorasick",
-  "source-url" : "git://github.com/okaoka/p6-Algorithm-AhoCorasick.git",
+  "source-url" : "git://github.com/titsuki/p6-Algorithm-AhoCorasick.git",
   "perl" : "6.c",
   "resources" : [ ],
   "build-depends" : [ ],
@@ -13,6 +13,6 @@
   "test-depends" : [ ],
   "version" : "0.04",
   "authors" : [
-    "okaoka"
+    "titsuki"
   ]
 }
