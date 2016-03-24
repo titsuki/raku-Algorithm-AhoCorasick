@@ -124,7 +124,7 @@ Returns elements of a finite set of strings with location within an input text.
 
 =head1 AUTHOR
 
-titsuki <cookbook_000@yahoo.co.jp>
+titsuki <titsuki@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

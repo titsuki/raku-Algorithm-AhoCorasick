@@ -45,7 +45,7 @@ Returns elements of a finite set of strings with location within an input text.
 AUTHOR
 ======
 
-titsuki <cookbook_000@yahoo.co.jp>
+titsuki <titsuki@cpan.org>
 
 COPYRIGHT AND LICENSE
 =====================
