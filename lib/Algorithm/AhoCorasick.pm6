@@ -2,17 +2,17 @@ use v6;
 use Algorithm::AhoCorasick::Node;
 unit class Algorithm::AhoCorasick;
 
-has $!root;
+has Algorithm::AhoCorasick::Node $!root;
 has $.keywords is required;
 
 method !build-automata() {
-    $!root = Algorithm::AhoCorasick::Node.new();
+    $!root .= new;
     for @$!keywords -> $keyword {
     	my $current-node = $!root;
-    	loop (my $i = 0; $i < $keyword.chars; $i++) {
+        for ^$keyword.chars -> $i {
     	    my $edge-character = $keyword.substr($i,1);
-    	    if not ($current-node.transitions{$edge-character}:exists) {
-    		$current-node.transitions{$edge-character} = Algorithm::AhoCorasick::Node.new();
+    	    if not $current-node.transitions{$edge-character}:exists {
+    		$current-node.transitions{$edge-character} .= new;
     	    }
     	    $current-node = $current-node.transitions{$edge-character};
     	}
@@ -20,18 +20,18 @@ method !build-automata() {
     }
     my @queue;
     @queue.push: $!root;
-    while (@queue.elems > 0) {
+    while @queue.elems > 0 {
 	my $current-node = @queue.shift;
 	for $current-node.transitions.keys -> $edge-character {
 	    my $next-node = $current-node.transitions{$edge-character};
 	    @queue.push($next-node);
 
 	    my $r = $current-node.failure;
-	    while (defined($r) && not $r.transitions{$edge-character}:exists) {
+	    while $r.defined && not $r.transitions{$edge-character}:exists {
 		$r = $r.failure;
 	    }
 
-	    if (not defined($r)) {
+	    if not $r.defined {
 		$next-node.failure = $!root;
 	    }
 	    else {
@@ -55,18 +55,18 @@ method match($text) {
 method locate($text) {
     my $matched;
     my $state = $!root;
-    loop (my $i = 0; $i < $text.chars; $i++) {
+    for ^$text.chars -> $i {
 	my $trans = Mu;
 	my $edge-character = $text.substr($i,1);
-	while (defined($state)) {
+	while $state.defined {
 	    $trans = $state.transitions{$edge-character};
-	    if ($state === $!root || defined($trans)) {
+	    if $state === $!root || $trans.defined {
 		last;
 	    }
 	    $state = $state.failure;
 	}
 
-	if (defined($trans)) {
+	if $trans.defined {
 	    $state = $trans;
 	}
 	for $state.matched-string.keys -> $string {
