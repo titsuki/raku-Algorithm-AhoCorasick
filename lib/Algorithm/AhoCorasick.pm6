@@ -3,11 +3,11 @@ use Algorithm::AhoCorasick::Node;
 unit class Algorithm::AhoCorasick;
 
 has Algorithm::AhoCorasick::Node $!root;
-has $.keywords is required;
+has @.keywords is required;
 
 method !build-automata() {
     $!root .= new;
-    for @$!keywords -> $keyword {
+    for @!keywords -> $keyword {
         my $current-node = $!root;
         for ^$keyword.chars -> $i {
             my $edge-character = $keyword.substr($i,1);
@@ -76,8 +76,8 @@ method locate($text) {
     return $matched;
 }
 
-submethod BUILD (:$keywords) {
-    $!keywords := $keywords;
+submethod BUILD (:@keywords) {
+    @!keywords := @keywords;
     self!build-automata();
 }
 
