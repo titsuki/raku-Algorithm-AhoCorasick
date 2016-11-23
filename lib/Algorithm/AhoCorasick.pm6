@@ -8,37 +8,37 @@ has $.keywords is required;
 method !build-automata() {
     $!root .= new;
     for @$!keywords -> $keyword {
-    	my $current-node = $!root;
+        my $current-node = $!root;
         for ^$keyword.chars -> $i {
-    	    my $edge-character = $keyword.substr($i,1);
-    	    if not $current-node.transitions{$edge-character}:exists {
-    		$current-node.transitions{$edge-character} .= new;
-    	    }
-    	    $current-node = $current-node.transitions{$edge-character};
-    	}
-    	$current-node.matched-string = set($keyword);
+            my $edge-character = $keyword.substr($i,1);
+            if not $current-node.transitions{$edge-character}:exists {
+                $current-node.transitions{$edge-character} .= new;
+            }
+            $current-node = $current-node.transitions{$edge-character};
+        }
+        $current-node.matched-string = set($keyword);
     }
     my @queue;
     @queue.push: $!root;
     while @queue.elems > 0 {
-	my $current-node = @queue.shift;
-	for $current-node.transitions.keys -> $edge-character {
-	    my $next-node = $current-node.transitions{$edge-character};
-	    @queue.push($next-node);
+        my $current-node = @queue.shift;
+        for $current-node.transitions.keys -> $edge-character {
+            my $next-node = $current-node.transitions{$edge-character};
+            @queue.push($next-node);
 
-	    my $r = $current-node.failure;
-	    while $r.defined && not $r.transitions{$edge-character}:exists {
-		$r = $r.failure;
-	    }
+            my $r = $current-node.failure;
+            while $r.defined && not $r.transitions{$edge-character}:exists {
+                $r = $r.failure;
+            }
 
-	    if not $r.defined {
-		$next-node.failure = $!root;
-	    }
-	    else {
-		$next-node.failure = $r.transitions{$edge-character};
-		$next-node.matched-string = $next-node.matched-string (|) $next-node.failure.matched-string;
-	    }
-	}
+            if not $r.defined {
+                $next-node.failure = $!root;
+            }
+            else {
+                $next-node.failure = $r.transitions{$edge-character};
+                $next-node.matched-string = $next-node.matched-string (|) $next-node.failure.matched-string;
+            }
+        }
     }
     $!root.failure = $!root;
 }
@@ -47,7 +47,7 @@ method match($text) {
     my $all = self.locate($text);
     my Set $matched;
     for $all.keys -> $keyword {
-	$matched = $matched (|) $keyword;
+        $matched = $matched (|) $keyword;
     }
     return $matched;
 }
@@ -56,22 +56,22 @@ method locate($text) {
     my $matched;
     my $state = $!root;
     for ^$text.chars -> $i {
-	my $trans = Mu;
-	my $edge-character = $text.substr($i,1);
-	while $state.defined {
-	    $trans = $state.transitions{$edge-character};
-	    if $state === $!root || $trans.defined {
-		last;
-	    }
-	    $state = $state.failure;
-	}
+        my $trans = Mu;
+        my $edge-character = $text.substr($i,1);
+        while $state.defined {
+            $trans = $state.transitions{$edge-character};
+            if $state === $!root || $trans.defined {
+                last;
+            }
+            $state = $state.failure;
+        }
 
-	if $trans.defined {
-	    $state = $trans;
-	}
-	for $state.matched-string.keys -> $string {
-	    $matched{$string}.push($i - $string.chars + 1);
-	}
+        if $trans.defined {
+            $state = $trans;
+        }
+        for $state.matched-string.keys -> $string {
+            $matched{$string}.push($i - $string.chars + 1);
+        }
     }
     return $matched;
 }
