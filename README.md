@@ -55,3 +55,4 @@ Copyright 2016 titsuki
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 The algorithm is from Alfred V. Aho and Margaret J. Corasick, Efficient string matching: an aid to bibliographic search, CACM, 18(6):333-340, June 1975.
+
