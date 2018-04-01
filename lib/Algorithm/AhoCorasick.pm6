@@ -5,7 +5,7 @@ unit class Algorithm::AhoCorasick:ver<0.0.9>;
 has Algorithm::AhoCorasick::Node $!root;
 has @.keywords is required;
 
-method !build-automata() {
+method !build-automata {
     $!root .= new;
     for @!keywords -> $keyword {
         my $current-node = $!root;
@@ -75,7 +75,7 @@ method locate($text) {
 
 submethod BUILD (:@keywords) {
     @!keywords := @keywords;
-    self!build-automata();
+    self!build-automata;
 }
 
 =begin pod
