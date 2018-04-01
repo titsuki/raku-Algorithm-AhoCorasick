@@ -44,12 +44,7 @@ method !build-automata() {
 }
 
 method match($text) {
-    my $all = self.locate($text);
-    my Set $matched = set();
-    for $all.keys -> $keyword {
-        $matched = $matched (|) $keyword;
-    }
-    return $matched;
+    set(self.locate($text).keys)
 }
 
 method locate($text) {
