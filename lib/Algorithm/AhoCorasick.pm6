@@ -1,6 +1,6 @@
 use v6;
 use Algorithm::AhoCorasick::Node;
-unit class Algorithm::AhoCorasick:ver<0.0.9>;
+unit class Algorithm::AhoCorasick:ver<0.0.10>;
 
 has Algorithm::AhoCorasick::Node $!root;
 has @.keywords is required;
