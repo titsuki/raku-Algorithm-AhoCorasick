@@ -11,7 +11,7 @@ method !build-automata {
         my $current-node = $!root;
         for ^$keyword.chars -> $i {
             my $edge-character = $keyword.substr($i,1);
-            if not $current-node.transitions{$edge-character}:exists {
+            unless $current-node.transitions{$edge-character}:exists {
                 $current-node.transitions{$edge-character} .= new;
             }
             $current-node = $current-node.transitions{$edge-character};
