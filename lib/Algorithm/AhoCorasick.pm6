@@ -5,13 +5,13 @@ unit class Algorithm::AhoCorasick:ver<0.0.9>;
 has Algorithm::AhoCorasick::Node $!root;
 has @.keywords is required;
 
-method !build-automata() {
+method !build-automata {
     $!root .= new;
     for @!keywords -> $keyword {
         my $current-node = $!root;
         for ^$keyword.chars -> $i {
             my $edge-character = $keyword.substr($i,1);
-            if not $current-node.transitions{$edge-character}:exists {
+            unless $current-node.transitions{$edge-character}:exists {
                 $current-node.transitions{$edge-character} .= new;
             }
             $current-node = $current-node.transitions{$edge-character};
@@ -70,7 +70,7 @@ method locate($text) {
 
 submethod BUILD (:@keywords) {
     @!keywords := @keywords;
-    self!build-automata();
+    self!build-automata;
 }
 
 =begin pod
