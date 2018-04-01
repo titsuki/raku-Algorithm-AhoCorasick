@@ -36,7 +36,7 @@ method !build-automata() {
             }
             else {
                 $next-node.failure = $r.transitions{$edge-character};
-                $next-node.matched-string = $next-node.matched-string (|) $next-node.failure.matched-string;
+                $next-node.matched-string (|)= $next-node.failure.matched-string;
             }
         }
     }
