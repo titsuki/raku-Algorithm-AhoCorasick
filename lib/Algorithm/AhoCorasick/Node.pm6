@@ -1,5 +1,5 @@
 use v6;
-unit class Algorithm::AhoCorasick::Node:ver<0.0.11>;
+unit class Algorithm::AhoCorasick::Node:ver<0.0.12>;
 
 has Set $.matched-string is rw;
 has Algorithm::AhoCorasick::Node %.transitions is rw;

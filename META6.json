@@ -17,5 +17,5 @@
   "source-url" : "git://github.com/titsuki/raku-Algorithm-AhoCorasick.git",
   "tags" : [ ],
   "test-depends" : [ ],
-  "version" : "0.0.11"
+  "version" : "0.0.12"
 }
