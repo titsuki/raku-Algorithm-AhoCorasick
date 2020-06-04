@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/titsuki/p6-Algorithm-AhoCorasick.svg?branch=master)](https://travis-ci.org/titsuki/p6-Algorithm-AhoCorasick)
+[![Build Status](https://travis-ci.org/titsuki/raku-Algorithm-AhoCorasick.svg?branch=master)](https://travis-ci.org/titsuki/raku-Algorithm-AhoCorasick)
 
 NAME
 ====
 
-Algorithm::AhoCorasick - A Perl 6 Aho-Corasick dictionary matching algorithm implementation
+Algorithm::AhoCorasick - A Raku Aho-Corasick dictionary matching algorithm implementation
 
 SYNOPSIS
 ========

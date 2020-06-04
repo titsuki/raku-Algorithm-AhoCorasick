@@ -77,7 +77,7 @@ submethod BUILD (:@keywords) {
 
 =head1 NAME
 
-Algorithm::AhoCorasick - A Perl 6 Aho-Corasick dictionary matching algorithm implementation
+Algorithm::AhoCorasick - A Raku Aho-Corasick dictionary matching algorithm implementation
 
 =head1 SYNOPSIS
 
