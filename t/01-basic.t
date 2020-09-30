@@ -14,7 +14,7 @@ use Algorithm::AhoCorasick;
 {
     my Algorithm::AhoCorasick $aho-corasick .= new(keywords => ['corasick']);
     my $actual = $aho-corasick.locate('corasic');
-    my $expected = Any;
+    my $expected = Hash;
     is $actual, $expected, "It should match none of words with location";
 }
 

@@ -43,12 +43,12 @@ method !build-automata {
     $!root.failure = $!root;
 }
 
-method match($text) {
+method match($text --> Set) {
     set(self.locate($text).keys)
 }
 
-method locate($text) {
-    my $matched;
+method locate($text --> Hash) {
+    my Hash $matched;
     my $trans = $!root;
     for ^$text.chars -> $i {
         my $edge-character = $text.substr($i,1);
